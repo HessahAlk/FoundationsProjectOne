@@ -11,8 +11,8 @@ original_price = 2
 signature_price = 2.750
 
 ############################# Start Here! ##############################
-cupcake_shop_name = #complete me!
-signature_flavors = #complete me!
+cupcake_shop_name = "The Cake Shop"
+signature_flavors = ["tuna", "salmon", "red herring"]
 order_list = []
 
 
@@ -20,7 +20,11 @@ def print_menu():
     """
     Print the items in the menu dictionary.
     """
-    # your code goes here!
+    print("Our menu:")
+    for aitem in menu.items():
+    	print('_"{}" (KD {})'.format(aitem[0],aitem[1]))
+
+print_menue()
 
 
 def print_originals():
@@ -28,7 +32,11 @@ def print_originals():
     Print the original flavor cupcakes.
     """
     print("Our original flavor cupcakes (KD %s each):" % original_price)
-    # your code goes here!
+    
+    for aitem in original_flavors:
+    	print('_"{}"'.format(aitem))
+
+  print_originals()
 
 
 def print_signatures():
@@ -36,14 +44,27 @@ def print_signatures():
     Print the signature flavor cupcakes.
     """
     print("Our signature flavor cupcake (KD %s each):" % signature_price)
-    # your code goes here!
+    
+    for aitem in signature_flavors:
+    	print('_"{}"'.format(aitem))
+
+print_signatures()
+
+
+print("What is your order? (Enter the exact spelling of the item you want. Type 'Exit' to end your order.)\n")
 
 
 def is_valid_order(order):
     """
     Check if an order exists in the shop.
     """
-    # your code goes here!
+    if order not in menu.keys() and order not in original_flavors and order not in signature_flavors:
+    	print("Please Enter a Valid Order!")
+    	return get_order()
+    else:
+    	global order_list
+    	order_list.append(order)
+    	return get_order()
 
 
 def get_order():
@@ -51,9 +72,14 @@ def get_order():
     Repeatedly ask customer for order until they end their order by typing "Exit".
     """
     order_list = []
-    # your code goes here!
+    
+    order = input()
+    if order != "Exit":
+    	is_valid_order(order)
 
     return order_list
+
+get_order()
 
 
 def accept_credit_card(total):
