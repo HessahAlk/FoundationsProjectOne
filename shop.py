@@ -24,7 +24,6 @@ def print_menu():
     for aitem in menu.items():
     	print('_"{}" (KD {})'.format(aitem[0],aitem[1]))
 
-print_menue()
 
 
 def print_originals():
@@ -36,7 +35,6 @@ def print_originals():
     for aitem in original_flavors:
     	print('_"{}"'.format(aitem))
 
-  print_originals()
 
 
 def print_signatures():
@@ -48,7 +46,6 @@ def print_signatures():
     for aitem in signature_flavors:
     	print('_"{}"'.format(aitem))
 
-print_signatures()
 
 
 print("What is your order? (Enter the exact spelling of the item you want. Type 'Exit' to end your order.)\n")
@@ -79,7 +76,6 @@ def get_order():
 
     return order_list
 
-get_order()
 
 
 def accept_credit_card(total):
