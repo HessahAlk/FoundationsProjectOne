@@ -21,8 +21,8 @@ def print_menu():
     Print the items in the menu dictionary.
     """
     print("Our menu:")
-    for aitem in menu.items():
-    	print('_"{}" (KD {})'.format(aitem[0],aitem[1]))
+    for aitem in menu:
+    	print("-\"%s\": KD %s" % (aitem, menu[aitem]))
 
 
 
@@ -33,7 +33,7 @@ def print_originals():
     print("Our original flavor cupcakes (KD %s each):" % original_price)
     
     for aitem in original_flavors:
-    	print('_"{}"'.format(aitem))
+    	print("-\"%s\""% aitem)
 
 
 
@@ -45,7 +45,7 @@ def print_signatures():
     print("Our signature flavor cupcake (KD %s each):" % signature_price)
     
     for aitem in signature_flavors:
-    	print('_"{}"'.format(aitem))
+    	print("-\"%s\""% aitem)
 
 
 print("What is your order? (Enter the exact spelling of the item you want. Type 'Exit' to end your order.)\n")
@@ -56,12 +56,10 @@ def is_valid_order(order):
     Check if an order exists in the shop.
     """
     if order not in menu.keys() or order not in original_flavors or order not in signature_flavors:
-    	print("Please Enter a Valid Order!")
-    	return get_order()
+    	return False
+	print("Please Enter a Valid Order!")
     else:
-    	global order_list
-    	order_list.append(order)
-    	return get_order()
+    	return True
 
 
 def get_order():
@@ -69,16 +67,15 @@ def get_order():
     Repeatedly ask customer for order until they end their order by typing "Exit".
     """
     order_list = []
-    
-    order = user_input.lower()
-    if user_input != "Exit":
-    	is_valid_order(user_input)
-    	order_list.oppened(user_input)
-    else:
-    	print ("This order is not available in the menue!")
+    user_input = input("Type your order! (Type 'exit' when you Finish)\n")
+    while user_input.lower() != "exit":
+        if is_valid_order(user_input):
+    	    order_list.oppened(user_input)
+        else:
+    	    print ("This order is not available in the menu!")
 
 
-    user_input=input("> ")
+    user_input = input("> ")
     return order_list
 
 
@@ -118,8 +115,11 @@ def print_order(order_list):
     print("Your order is: ")
 
     for order in order_list:
-    	print("_ \"%S\"" % order)
+    	print("- \"%s\"" % order)
 
     	total_price = get_total_price(order_list)
-    	print("Total price :  KD %S" % total_price)
+    	print("Total price :  KD %s" % total_price)
+	accept_credit_card(total_price)
+	
+	print("Thank you for choosing %s" % cupcake_shop_name)
     
